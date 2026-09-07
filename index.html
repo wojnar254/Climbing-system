@@ -1103,6 +1103,16 @@
     }
     .about-original-content p:last-child{margin-bottom:0}
 
+
+    /* Cały kafelek działu jest klikalny */
+    .cs-home-launcher-card{
+      cursor:pointer!important;
+    }
+    .cs-home-launcher-card strong,
+    .cs-home-launcher-card span{
+      pointer-events:none;
+    }
+
     /* RESPONSIVE */
     @media(max-width:1020px){
       .nav-links{display:none}
@@ -1153,9 +1163,6 @@
       </a>
 
       <nav class="nav-links" id="navLinks" aria-label="Nawigacja">
-        <a href="#about" data-cs-nav="about">O firmie</a>
-        <a href="#offer" data-cs-nav="offer">Oferta</a>
-        <a href="#safety" data-cs-nav="safety">Bezpieczeństwo</a>
         <a href="#igp" class="igp-nav-link" data-cs-nav="igp"><span>IGP</span></a>
         <a href="#contact" class="nav-cta" data-cs-nav="contact">Kontakt</a>
         <div class="lang-switch" aria-label="Wybierz język">
@@ -1229,14 +1236,9 @@
           <p>Pełne informacje otwierają się jako osobny widok, dzięki czemu strona główna pozostaje krótka.</p>
         </div>
         <div class="cs-home-launcher-grid">
-          <button type="button" class="cs-home-launcher-card" data-cs-open="about"><strong>O firmie</strong><span>Otwórz →</span></button>
-          <button type="button" class="cs-home-launcher-card" data-cs-open="offer"><strong>Oferta</strong><span>Otwórz →</span></button>
-          <button type="button" class="cs-home-launcher-card" data-cs-open="confined"><strong>Przestrzenie zamknięte</strong><span>Otwórz →</span></button>
-          <button type="button" class="cs-home-launcher-card" data-cs-open="training"><strong>Szkolenia</strong><span>Otwórz →</span></button>
-          <button type="button" class="cs-home-launcher-card" data-cs-open="leasing"><strong>Leasing pracowniczy</strong><span>Otwórz →</span></button>
-          <button type="button" class="cs-home-launcher-card" data-cs-open="rescue"><strong>Ratownictwo</strong><span>Otwórz →</span></button>
-          <button type="button" class="cs-home-launcher-card" data-cs-open="igp"><strong>IGP</strong><span>Otwórz →</span></button>
-          <button type="button" class="cs-home-launcher-card" data-cs-open="contact"><strong>Kontakt</strong><span>Otwórz →</span></button>
+          <button type="button" class="cs-home-launcher-card" data-cs-open="contact" aria-label="Otwórz: Kontakt">
+            <strong>Kontakt</strong><span>Otwórz →</span>
+          </button>
         </div>
       </div>
     </section>
@@ -2827,6 +2829,30 @@
         if(csSections[key]) csOpenSection(key,false);
       }
     },20);
+
+
+
+    // ===== PEWNE OTWIERANIE DZIAŁÓW Z KAFELKÓW =====
+    document.addEventListener('click', function(e){
+      const tile = e.target.closest('.cs-home-launcher-card[data-cs-open]');
+      if(tile){
+        e.preventDefault();
+        e.stopPropagation();
+        if(typeof csOpenSection === 'function'){
+          csOpenSection(tile.dataset.csOpen, true);
+        }
+        return;
+      }
+
+      const nav = e.target.closest('[data-cs-nav]');
+      if(nav){
+        e.preventDefault();
+        e.stopPropagation();
+        if(typeof csOpenSection === 'function'){
+          csOpenSection(nav.dataset.csNav, true);
+        }
+      }
+    }, true);
 
 
     document.getElementById('year').textContent = new Date().getFullYear();

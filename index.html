@@ -785,6 +785,108 @@
       .global-lightbox-caption{bottom:4px;padding:0 50px}
     }
 
+
+    /* ===== POPRAWKI UKŁADU I NAWIGACJI ===== */
+    .cards{
+      align-items:start!important;
+      grid-auto-rows:auto!important;
+    }
+    .card{
+      align-self:start!important;
+      height:auto!important;
+      min-height:275px!important;
+    }
+    .card:has(.offer-bubble.open){
+      grid-row:auto!important;
+      min-height:275px!important;
+    }
+
+    .section-launcher{
+      padding:34px 0 54px;
+      border-bottom:1px solid var(--line);
+      background:#0b0e12;
+    }
+    .section-launcher-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+    }
+    .section-launcher-btn{
+      min-height:92px;
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:linear-gradient(180deg,#14191f,#0f1217);
+      color:#fff;
+      text-align:left;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:10px;
+      transition:.22s ease;
+    }
+    .section-launcher-btn:hover{
+      transform:translateY(-3px);
+      border-color:rgba(230,56,59,.5);
+    }
+    .section-launcher-btn strong{font-size:1rem}
+    .section-launcher-btn span{color:#ff7779;font-size:.8rem;font-weight:900}
+
+    .page-view{
+      display:none;
+      min-height:100vh;
+      padding:120px 0 80px;
+      background:
+        radial-gradient(circle at 88% 8%,rgba(230,56,59,.10),transparent 28%),
+        linear-gradient(180deg,#090b0e,#0d1014 55%,#080a0d);
+      color:#f5f7f9;
+    }
+    .page-view.active{display:block}
+    body.page-view-open main > section:not(.page-view){display:none!important}
+    body.page-view-open footer{display:none!important}
+    .page-view-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding-bottom:18px;
+      margin-bottom:34px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .page-view-top h1{
+      margin:0;
+      font-size:clamp(2.2rem,4.5vw,4rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+    }
+    .page-view-back{
+      border:1px solid var(--line);
+      background:#12161c;
+      color:#fff;
+      border-radius:999px;
+      padding:10px 15px;
+      font-weight:850;
+    }
+    .page-view-content > section{
+      display:block!important;
+      padding-top:0!important;
+      padding-bottom:0!important;
+      border:0!important;
+      background:transparent!important;
+    }
+    .page-view-content .container{
+      width:100%!important;
+      max-width:none!important;
+    }
+
+    @media(max-width:900px){
+      .section-launcher-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:520px){
+      .section-launcher-grid{grid-template-columns:1fr}
+      .page-view-top{align-items:flex-start;flex-direction:column}
+    }
+
     /* RESPONSIVE */
     @media(max-width:1020px){
       .nav-links{display:none}
@@ -835,12 +937,15 @@
       </a>
 
       <nav class="nav-links" id="navLinks" aria-label="Nawigacja">
+        <a href="#o-firmie">O firmie</a>
         <a href="#oferta" data-pl="Oferta" data-en="Services">Oferta</a>
         <a href="#przestrzenie" data-pl="Przestrzenie zamknięte" data-en="Confined spaces">Przestrzenie zamknięte</a>
         <a href="#bezpieczenstwo" data-pl="Bezpieczeństwo" data-en="Safety">Bezpieczeństwo</a>
         <a href="#realizacje" data-pl="Realizacje" data-en="Projects">Realizacje</a>
         <a href="#szkolenia" data-pl="Szkolenia" data-en="Training">Szkolenia</a>
         <a href="#specjalizacje" class="igp-nav-link" data-detail-open-nav="igp"><span>IGP</span></a>
+        <a href="#leasing" data-page-nav="leasing">Leasing pracowniczy</a>
+        <a href="#ratownictwo" data-page-nav="rescue">Ratownictwo</a>
         <a href="#kontakt" class="nav-cta" data-pl="Kontakt" data-en="Contact">Kontakt</a>
         <div class="lang-switch" aria-label="Wybierz język">
           <button class="lang-btn active" data-lang="pl">PL</button>
@@ -896,6 +1001,22 @@
         <div class="proof-item"><strong>Wsparcie techniczne</strong><span>Ekspertyzy, badania i dokumentacja</span></div>
       </div>
     </section>
+
+    <section class="section-launcher" id="szybki-dostep">
+      <div class="container">
+        <div class="section-launcher-grid">
+          <button class="section-launcher-btn" type="button" data-page-open="about"><strong>O firmie</strong><span>Otwórz →</span></button>
+          <button class="section-launcher-btn" type="button" data-page-open="offer"><strong>Oferta</strong><span>Otwórz →</span></button>
+          <button class="section-launcher-btn" type="button" data-page-open="confined"><strong>Przestrzenie zamknięte</strong><span>Otwórz →</span></button>
+          <button class="section-launcher-btn" type="button" data-page-open="training"><strong>Szkolenia</strong><span>Otwórz →</span></button>
+          <button class="section-launcher-btn" type="button" data-page-open="leasing"><strong>Leasing pracowniczy</strong><span>Otwórz →</span></button>
+          <button class="section-launcher-btn" type="button" data-page-open="rescue"><strong>Ratownictwo</strong><span>Otwórz →</span></button>
+          <button class="section-launcher-btn" type="button" data-page-open="igp"><strong>IGP</strong><span>Otwórz →</span></button>
+          <button class="section-launcher-btn" type="button" data-page-open="contact"><strong>Kontakt</strong><span>Otwórz →</span></button>
+        </div>
+      </div>
+    </section>
+
 
     <!-- 5: kwalifikacje -->
     <section class="qualifications">
@@ -1583,6 +1704,56 @@
       </div>
     </section>
 
+
+    <section class="page-view" id="page-about" aria-hidden="true">
+      <div class="container">
+        <div class="page-view-top"><h1>O firmie</h1><button class="page-view-back" type="button" data-page-close>← Wróć</button></div>
+        <div class="page-view-content" data-page-source="#o-firmie"></div>
+      </div>
+    </section>
+    <section class="page-view" id="page-offer" aria-hidden="true">
+      <div class="container">
+        <div class="page-view-top"><h1>Oferta</h1><button class="page-view-back" type="button" data-page-close>← Wróć</button></div>
+        <div class="page-view-content" data-page-source="#oferta"></div>
+      </div>
+    </section>
+    <section class="page-view" id="page-confined" aria-hidden="true">
+      <div class="container">
+        <div class="page-view-top"><h1>Przestrzenie zamknięte</h1><button class="page-view-back" type="button" data-page-close>← Wróć</button></div>
+        <div class="page-view-content" data-page-source="#przestrzenie-zamkniete-detail"></div>
+      </div>
+    </section>
+    <section class="page-view" id="page-training" aria-hidden="true">
+      <div class="container">
+        <div class="page-view-top"><h1>Szkolenia</h1><button class="page-view-back" type="button" data-page-close>← Wróć</button></div>
+        <div class="page-view-content" data-page-source="#detail-training"></div>
+      </div>
+    </section>
+    <section class="page-view" id="page-leasing" aria-hidden="true">
+      <div class="container">
+        <div class="page-view-top"><h1>Leasing pracowniczy</h1><button class="page-view-back" type="button" data-page-close>← Wróć</button></div>
+        <div class="page-view-content" data-page-source="#detail-leasing"></div>
+      </div>
+    </section>
+    <section class="page-view" id="page-rescue" aria-hidden="true">
+      <div class="container">
+        <div class="page-view-top"><h1>Ratownictwo</h1><button class="page-view-back" type="button" data-page-close>← Wróć</button></div>
+        <div class="page-view-content" data-page-source="#detail-rescue"></div>
+      </div>
+    </section>
+    <section class="page-view" id="page-igp" aria-hidden="true">
+      <div class="container">
+        <div class="page-view-top"><h1>Integrated Global Projects</h1><button class="page-view-back" type="button" data-page-close>← Wróć</button></div>
+        <div class="page-view-content" data-page-source="#detail-igp"></div>
+      </div>
+    </section>
+    <section class="page-view" id="page-contact" aria-hidden="true">
+      <div class="container">
+        <div class="page-view-top"><h1>Kontakt</h1><button class="page-view-back" type="button" data-page-close>← Wróć</button></div>
+        <div class="page-view-content" data-page-source="#kontakt"></div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -2073,6 +2244,138 @@
     });
 
     enableGlobalImageZoom();
+
+
+
+    // ===== OSOBNE WIDOKI SEKCJI =====
+    const sectionPages = ['about','offer','confined','training','leasing','rescue','igp','contact'];
+
+    function buildSectionPages(){
+      document.querySelectorAll('.page-view-content[data-page-source]').forEach(holder => {
+        if(holder.dataset.built === '1') return;
+        const source = document.querySelector(holder.dataset.pageSource);
+        if(!source) return;
+
+        const clone = source.cloneNode(true);
+        clone.removeAttribute('id');
+        clone.classList.remove('active');
+        clone.style.display = 'block';
+        clone.setAttribute('aria-hidden','false');
+
+        clone.querySelectorAll('.detail-top,.generic-detail-top,.silo-top').forEach(el => el.remove());
+        holder.appendChild(clone);
+        holder.dataset.built = '1';
+      });
+
+      document.querySelectorAll('.page-view [data-offer-toggle]').forEach(btn => {
+        if(btn.dataset.boundPage === '1') return;
+        btn.dataset.boundPage = '1';
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.card');
+          const bubble = card?.querySelector('.offer-bubble');
+          if(!bubble) return;
+          const isOpen = bubble.classList.toggle('open');
+          btn.textContent = isOpen
+            ? (typeof currentLang !== 'undefined' && currentLang === 'en' ? 'Hide details ↑' : 'Ukryj szczegóły ↑')
+            : (typeof currentLang !== 'undefined' && currentLang === 'en' ? 'View details →' : 'Zobacz szczegóły →');
+        });
+      });
+
+      if(typeof enableGlobalImageZoom === 'function') enableGlobalImageZoom();
+    }
+
+    function openSectionPage(key, push=true){
+      buildSectionPages();
+
+      document.body.classList.remove('detail-open','generic-detail-open','silo-detail-open');
+      document.querySelectorAll('.page-view').forEach(v => {
+        v.classList.remove('active');
+        v.setAttribute('aria-hidden','true');
+      });
+
+      const page = document.getElementById('page-' + key);
+      if(!page) return;
+
+      document.body.classList.add('page-view-open');
+      page.classList.add('active');
+      page.setAttribute('aria-hidden','false');
+
+      if(push) history.pushState({page:key},'', '#'+key);
+      window.scrollTo({top:0,behavior:'instant'});
+
+      if(typeof applyFullLanguage === 'function'){
+        setTimeout(() => applyFullLanguage(typeof currentLang !== 'undefined' ? currentLang : 'pl'),0);
+      }
+    }
+
+    function closeSectionPage(push=true){
+      document.querySelectorAll('.page-view').forEach(v => {
+        v.classList.remove('active');
+        v.setAttribute('aria-hidden','true');
+      });
+      document.body.classList.remove('page-view-open');
+      if(push) history.pushState({},'', '#start');
+      setTimeout(() => document.getElementById('start')?.scrollIntoView({behavior:'smooth'}),20);
+    }
+
+    document.querySelectorAll('[data-page-open]').forEach(btn => {
+      btn.addEventListener('click', () => openSectionPage(btn.dataset.pageOpen));
+    });
+    document.querySelectorAll('[data-page-close]').forEach(btn => {
+      btn.addEventListener('click', () => closeSectionPage(true));
+    });
+
+    const navPageMap = {
+      '#o-firmie':'about',
+      '#oferta':'offer',
+      '#przestrzenie':'confined',
+      '#szkolenia':'training',
+      '#kontakt':'contact'
+    };
+
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+      const key = navPageMap[a.getAttribute('href')];
+      if(!key) return;
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        openSectionPage(key);
+      });
+    });
+
+    document.querySelectorAll('[data-detail-open-nav="igp"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        openSectionPage('igp');
+      });
+    });
+
+    document.querySelectorAll('[data-page-nav="leasing"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        openSectionPage('leasing');
+      });
+    });
+
+    document.querySelectorAll('[data-page-nav="rescue"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        openSectionPage('rescue');
+      });
+    });
+
+    window.addEventListener('popstate', () => {
+      const key = location.hash.replace('#','');
+      if(sectionPages.includes(key)){
+        openSectionPage(key,false);
+      } else if(document.body.classList.contains('page-view-open')){
+        closeSectionPage(false);
+      }
+    });
+
+    const startKey = location.hash.replace('#','');
+    if(sectionPages.includes(startKey)){
+      setTimeout(() => openSectionPage(startKey,false),0);
+    }
 
 
     document.getElementById('year').textContent = new Date().getFullYear();

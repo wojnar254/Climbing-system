@@ -887,6 +887,27 @@
       .page-view-top{align-items:flex-start;flex-direction:column}
     }
 
+
+    /* ===== NAVBAR + HERO FIX ===== */
+    .emergency-number{
+      white-space:nowrap!important;
+      word-break:normal!important;
+      overflow-wrap:normal!important;
+      font-size:clamp(1.55rem,2.9vw,2.7rem)!important;
+    }
+    .hero-card{min-width:0}
+    .hero-card .emergency-number{display:block;width:max-content;max-width:100%}
+
+    @media(min-width:1021px){
+      .nav-links{
+        gap:18px!important;
+        font-size:.88rem!important;
+        flex-wrap:nowrap!important;
+        white-space:nowrap;
+      }
+      .nav-links a{white-space:nowrap}
+    }
+
     /* RESPONSIVE */
     @media(max-width:1020px){
       .nav-links{display:none}
@@ -937,21 +958,16 @@
       </a>
 
       <nav class="nav-links" id="navLinks" aria-label="Nawigacja">
-        <a href="#o-firmie">O firmie</a>
-        <a href="#oferta" data-pl="Oferta" data-en="Services">Oferta</a>
-        <a href="#przestrzenie" data-pl="Przestrzenie zamknięte" data-en="Confined spaces">Przestrzenie zamknięte</a>
-        <a href="#bezpieczenstwo" data-pl="Bezpieczeństwo" data-en="Safety">Bezpieczeństwo</a>
-        <a href="#realizacje" data-pl="Realizacje" data-en="Projects">Realizacje</a>
-        <a href="#szkolenia" data-pl="Szkolenia" data-en="Training">Szkolenia</a>
-        <a href="#specjalizacje" class="igp-nav-link" data-detail-open-nav="igp"><span>IGP</span></a>
-        <a href="#leasing" data-page-nav="leasing">Leasing pracowniczy</a>
-        <a href="#ratownictwo" data-page-nav="rescue">Ratownictwo</a>
-        <a href="#kontakt" class="nav-cta" data-pl="Kontakt" data-en="Contact">Kontakt</a>
+        <a href="#o-firmie" data-main-nav="about" data-pl="O firmie" data-en="About us">O firmie</a>
+        <a href="#oferta" data-main-nav="offer" data-pl="Oferta" data-en="Services">Oferta</a>
+        <a href="#bezpieczenstwo" data-main-nav="safety" data-pl="Bezpieczeństwo" data-en="Safety">Bezpieczeństwo</a>
+        <a href="#igp" class="igp-nav-link" data-main-nav="igp"><span>IGP</span></a>
+        <a href="#kontakt" class="nav-cta" data-main-nav="contact" data-pl="Kontakt" data-en="Contact">Kontakt</a>
         <div class="lang-switch" aria-label="Wybierz język">
-          <button class="lang-btn active" data-lang="pl">PL</button>
-          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn active" data-lang="pl" type="button">PL</button>
+          <button class="lang-btn" data-lang="en" type="button">EN</button>
         </div>
-      </nav>
+</nav>
 
       <button class="menu-btn" id="menuBtn" aria-label="Otwórz menu" aria-expanded="false">☰</button>
     </div>
@@ -1754,6 +1770,17 @@
       </div>
     </section>
 
+
+    <section class="page-view" id="page-safety" aria-hidden="true">
+      <div class="container">
+        <div class="page-view-top">
+          <h1>Bezpieczeństwo</h1>
+          <button class="page-view-back" type="button" data-page-close>← Wróć</button>
+        </div>
+        <div class="page-view-content" data-page-source="#bezpieczenstwo"></div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -2248,7 +2275,7 @@
 
 
     // ===== OSOBNE WIDOKI SEKCJI =====
-    const sectionPages = ['about','offer','confined','training','leasing','rescue','igp','contact'];
+    const sectionPages = ['about','offer','confined','training','leasing','rescue','igp','contact','safety'];
 
     function buildSectionPages(){
       document.querySelectorAll('.page-view-content[data-page-source]').forEach(holder => {
@@ -2376,6 +2403,123 @@
     if(sectionPages.includes(startKey)){
       setTimeout(() => openSectionPage(startKey,false),0);
     }
+
+
+
+    // ===== PEWNE OTWIERANIE GÓRNYCH KAFELKÓW I NAVBARU =====
+    function csBuildPageView(key){
+      const page = document.getElementById('page-' + key);
+      if(!page) return null;
+
+      const holder = page.querySelector('.page-view-content[data-page-source]');
+      if(holder && holder.dataset.built !== '1'){
+        const selector = holder.dataset.pageSource;
+        const source = document.querySelector(selector);
+        if(source){
+          const clone = source.cloneNode(true);
+          clone.removeAttribute('id');
+          clone.classList.remove('active');
+          clone.style.display = 'block';
+          clone.setAttribute('aria-hidden','false');
+
+          clone.querySelectorAll('.detail-top,.generic-detail-top,.silo-top').forEach(el => el.remove());
+          holder.appendChild(clone);
+          holder.dataset.built = '1';
+
+          // Buttons "Zobacz szczegóły" inside cloned Offer page
+          holder.querySelectorAll('[data-offer-toggle]').forEach(btn => {
+            if(btn.dataset.csBound === '1') return;
+            btn.dataset.csBound = '1';
+            btn.addEventListener('click', ev => {
+              ev.preventDefault();
+              ev.stopPropagation();
+              const card = btn.closest('.card');
+              const bubble = card?.querySelector('.offer-bubble');
+              if(!bubble) return;
+              const open = bubble.classList.toggle('open');
+              const lang = (typeof currentLang !== 'undefined') ? currentLang : 'pl';
+              btn.textContent = open
+                ? (lang === 'en' ? 'Hide details ↑' : 'Ukryj szczegóły ↑')
+                : (lang === 'en' ? 'View details →' : 'Zobacz szczegóły →');
+            });
+          });
+
+          if(typeof enableGlobalImageZoom === 'function'){
+            setTimeout(enableGlobalImageZoom,0);
+          }
+        }
+      }
+      return page;
+    }
+
+    function csOpenPage(key){
+      document.body.classList.remove('detail-open','generic-detail-open','silo-detail-open');
+
+      document.querySelectorAll('.page-view').forEach(v => {
+        v.classList.remove('active');
+        v.setAttribute('aria-hidden','true');
+      });
+
+      const page = csBuildPageView(key);
+      if(!page) return;
+
+      document.body.classList.add('page-view-open');
+      page.classList.add('active');
+      page.setAttribute('aria-hidden','false');
+      history.pushState({page:key},'', '#'+key);
+      window.scrollTo({top:0,behavior:'instant'});
+
+      if(typeof applyFullLanguage === 'function'){
+        const lang = (typeof currentLang !== 'undefined') ? currentLang : 'pl';
+        setTimeout(() => applyFullLanguage(lang),0);
+      }
+    }
+
+    function csClosePage(){
+      document.querySelectorAll('.page-view').forEach(v => {
+        v.classList.remove('active');
+        v.setAttribute('aria-hidden','true');
+      });
+      document.body.classList.remove('page-view-open');
+      history.pushState({},'', '#start');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    // Event delegation prevents broken buttons caused by cloned/rebuilt markup.
+    document.addEventListener('click', function(e){
+      const launcher = e.target.closest('[data-page-open]');
+      if(launcher){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        csOpenPage(launcher.dataset.pageOpen);
+        return;
+      }
+
+      const nav = e.target.closest('[data-main-nav]');
+      if(nav){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        csOpenPage(nav.dataset.mainNav);
+        return;
+      }
+
+      const back = e.target.closest('[data-page-close]');
+      if(back){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        csClosePage();
+      }
+    }, true);
+
+
+
+    // Otwórz odpowiedni widok także po wejściu bezpośrednio z hashem.
+    setTimeout(() => {
+      const key = location.hash.replace('#','');
+      if(['about','offer','safety','igp','contact','confined','training','leasing','rescue'].includes(key)){
+        csOpenPage(key);
+      }
+    }, 40);
 
 
     document.getElementById('year').textContent = new Date().getFullYear();

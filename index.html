@@ -908,6 +908,40 @@
       .nav-links a{white-space:nowrap}
     }
 
+
+    /* Poszerzona karta pogotowia w HERO */
+    .hero-layout{
+      grid-template-columns:minmax(0,1.12fr) minmax(390px,.72fr)!important;
+      gap:64px!important;
+    }
+    .hero-card{
+      width:100%!important;
+      max-width:440px!important;
+      padding:34px!important;
+    }
+    .hero-card .emergency-number{
+      font-size:clamp(2rem,3vw,3rem)!important;
+      white-space:nowrap!important;
+    }
+
+    @media(max-width:1020px){
+      .hero-layout{
+        grid-template-columns:1fr!important;
+      }
+      .hero-card{
+        max-width:620px!important;
+      }
+    }
+
+    @media(max-width:520px){
+      .hero-card{
+        padding:26px 22px!important;
+      }
+      .hero-card .emergency-number{
+        font-size:clamp(1.75rem,9vw,2.4rem)!important;
+      }
+    }
+
     /* RESPONSIVE */
     @media(max-width:1020px){
       .nav-links{display:none}

@@ -962,6 +962,222 @@
       .emergency-number{font-size:clamp(1.7rem,8.5vw,2.35rem)}
     }
 
+  
+    /* ABOUT DETAIL PAGE */
+    .about-detail{
+      display:none;min-height:100vh;padding:125px 0 80px;
+      background:
+        radial-gradient(circle at 85% 12%,rgba(230,56,59,.10),transparent 26%),
+        linear-gradient(180deg,#090b0e,#0d1014 52%,#080a0d);
+      color:#f5f7f9;
+    }
+    .about-detail.active{display:block}
+    body.about-detail-open main > section:not(.about-detail){display:none}
+    body.about-detail-open footer{display:none}
+    body.about-detail-open .nav-wrap{
+      background:rgba(8,10,13,.94);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+    .about-detail-shell{width:min(1120px,calc(100% - 34px));margin:auto}
+    .about-detail-top{
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+      padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .about-detail-top h1{
+      margin:0;font-size:clamp(2.2rem,4vw,3.4rem);
+      line-height:1;letter-spacing:-.045em
+    }
+    .about-detail-back{
+      border:1px solid rgba(255,255,255,.14);
+      background:#12161c;color:#fff;border-radius:999px;
+      padding:10px 15px;font-weight:850
+    }
+    .about-detail-back:hover{background:#1a2028}
+    .about-story{
+      position:relative;margin-top:42px;padding:48px;
+      border:1px solid var(--line);border-radius:30px;overflow:hidden;
+      background:
+        linear-gradient(rgba(8,10,13,.76),rgba(8,10,13,.86)),
+        radial-gradient(circle at 85% 30%,rgba(255,255,255,.08),transparent 22%),
+        linear-gradient(140deg,#151a20,#0d1014);
+    }
+    .about-story::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
+      background:
+        linear-gradient(135deg,transparent 0 58%,rgba(255,255,255,.025) 58% 59%,transparent 59%),
+        radial-gradient(circle at 24% 42%,rgba(230,56,59,.12),transparent 22%);
+    }
+    .about-story > *{position:relative;z-index:1}
+    .about-story-copy{
+      max-width:900px;margin:0 auto;text-align:center;
+      font-size:1.03rem;line-height:1.72;color:#d3dae2
+    }
+    .about-story-copy p{margin:0 0 18px}
+    .about-story-copy p:last-child{margin-bottom:0}
+    .about-story-highlight{
+      margin:30px auto 0;max-width:900px;padding:20px 22px;
+      border-radius:18px;border:1px solid rgba(230,56,59,.26);
+      background:rgba(230,56,59,.08);color:#fff;text-align:center;font-weight:800
+    }
+    @media(max-width:640px){
+      .about-detail{padding-top:105px}
+      .about-detail-top{align-items:flex-start;flex-direction:column}
+      .about-story{padding:28px 20px}
+      .about-story-copy{font-size:.98rem;text-align:left}
+      .about-story-highlight{text-align:left}
+    }
+
+  
+    /* TRAINING DETAIL PAGE */
+    .training-detail{
+      display:none;min-height:100vh;padding:125px 0 90px;
+      background:
+        radial-gradient(circle at 88% 8%,rgba(230,56,59,.11),transparent 27%),
+        linear-gradient(180deg,#090b0e,#0d1014 52%,#080a0d);
+      color:#f5f7f9;
+    }
+    .training-detail.active{display:block}
+    body.training-detail-open main > section:not(.training-detail){display:none}
+    body.training-detail-open footer{display:none}
+    body.training-detail-open .nav-wrap{
+      background:rgba(8,10,13,.94);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+    .training-detail-shell{width:min(1120px,calc(100% - 34px));margin:auto}
+    .training-detail-top{
+      display:flex;justify-content:space-between;align-items:center;gap:20px;
+      padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .training-detail-top h1{
+      margin:0;font-size:clamp(2.2rem,4vw,3.5rem);
+      line-height:1;letter-spacing:-.045em
+    }
+    .training-detail-back{
+      border:1px solid rgba(255,255,255,.14);
+      background:#12161c;color:#fff;border-radius:999px;
+      padding:10px 15px;font-weight:850
+    }
+    .training-detail-back:hover{background:#1a2028}
+
+    .training-photo-reference{
+      margin:40px 0 34px;padding:16px;border:1px solid var(--line);
+      border-radius:24px;background:#11151a;
+    }
+    .training-photo-reference img{
+      width:100%;height:auto;display:block;border-radius:16px;
+      opacity:.96;
+    }
+
+    .training-intro{
+      max-width:980px;margin:0 auto 42px;
+      color:#c6cdd5;font-size:1rem;line-height:1.68;
+    }
+    .training-intro p{margin:0 0 18px}
+
+    .training-programs{display:grid;gap:18px;margin-top:28px}
+    .training-program-card{
+      display:grid;grid-template-columns:190px 1fr;gap:30px;align-items:start;
+      padding:28px;border:1px solid var(--line);border-radius:24px;
+      background:linear-gradient(180deg,#14191f,#0f1217);
+    }
+    .training-program-badge{
+      width:170px;aspect-ratio:1/1;border-radius:50%;
+      display:grid;place-items:center;text-align:center;padding:22px;
+      border:9px solid #df3b3f;background:#f2f2f2;color:#111;
+      box-shadow:inset 0 0 0 4px #151515;
+      font-weight:950;font-size:.86rem;line-height:1.2;
+      text-transform:uppercase;
+    }
+    .training-program-card h2{
+      margin:0 0 12px;font-size:clamp(1.35rem,2.5vw,2rem)
+    }
+    .training-program-card p{margin:0 0 14px;color:#c6cdd5}
+    .training-free{
+      margin-top:16px;padding:14px 16px;border-radius:14px;
+      background:rgba(230,56,59,.10);
+      border:1px solid rgba(230,56,59,.28);
+      color:#fff;font-weight:950;
+    }
+    @media(max-width:760px){
+      .training-detail{padding-top:105px}
+      .training-detail-top{align-items:flex-start;flex-direction:column}
+      .training-program-card{grid-template-columns:1fr}
+      .training-program-badge{width:150px}
+    }
+
+  
+    /* RESCUE DETAIL PAGE */
+    .rescue-detail{
+      display:none;min-height:100vh;padding:125px 0 90px;
+      background:
+        radial-gradient(circle at 88% 8%,rgba(230,56,59,.11),transparent 27%),
+        linear-gradient(180deg,#090b0e,#0d1014 52%,#080a0d);
+      color:#f5f7f9;
+    }
+    .rescue-detail.active{display:block}
+    body.rescue-detail-open main > section:not(.rescue-detail){display:none}
+    body.rescue-detail-open footer{display:none}
+    body.rescue-detail-open .nav-wrap{
+      background:rgba(8,10,13,.94);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+    .rescue-detail-shell{width:min(1120px,calc(100% - 34px));margin:auto}
+    .rescue-detail-top{
+      display:flex;justify-content:space-between;align-items:center;gap:20px;
+      padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .rescue-detail-top h1{
+      margin:0;font-size:clamp(2rem,4vw,3.25rem);
+      line-height:1.04;letter-spacing:-.045em
+    }
+    .rescue-detail-back{
+      border:1px solid rgba(255,255,255,.14);
+      background:#12161c;color:#fff;border-radius:999px;
+      padding:10px 15px;font-weight:850
+    }
+    .rescue-detail-back:hover{background:#1a2028}
+    .rescue-reference{
+      margin:40px 0 34px;padding:16px;border:1px solid var(--line);
+      border-radius:24px;background:#11151a;
+    }
+    .rescue-reference img{
+      width:100%;height:auto;display:block;border-radius:16px;
+    }
+    .rescue-copy{
+      max-width:980px;margin:0 auto;
+      color:#c6cdd5;font-size:1rem;line-height:1.7;
+    }
+    .rescue-copy p{margin:0 0 18px}
+    .rescue-offer{
+      margin:30px 0;padding:26px;border:1px solid var(--line);
+      border-radius:22px;background:linear-gradient(180deg,#14191f,#0f1217);
+    }
+    .rescue-offer h2{
+      margin:0 0 16px;font-size:clamp(1.35rem,2.4vw,1.9rem);color:#fff
+    }
+    .rescue-offer ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+    .rescue-offer li{
+      position:relative;padding:13px 15px 13px 42px;
+      border:1px solid rgba(255,255,255,.08);border-radius:14px;
+      background:rgba(255,255,255,.025);color:#d6dde5
+    }
+    .rescue-offer li::before{
+      content:"";position:absolute;left:16px;top:50%;width:10px;height:10px;
+      border-radius:50%;background:var(--red);transform:translateY(-50%)
+    }
+    .rescue-highlight{
+      margin-top:28px;padding:20px 22px;border-radius:18px;
+      border:1px solid rgba(230,56,59,.28);
+      background:rgba(230,56,59,.08);color:#fff;font-weight:800
+    }
+    @media(max-width:640px){
+      .rescue-detail{padding-top:105px}
+      .rescue-detail-top{align-items:flex-start;flex-direction:column}
+    }
+
   </style>
 </head>
 
@@ -1797,6 +2013,36 @@
       </div>
     </section>
 
+  
+    <section id="detail-about" class="about-detail" aria-labelledby="detail-about-title">
+      <div class="about-detail-shell">
+        <div class="about-detail-top">
+          <h1 id="detail-about-title">O firmie</h1>
+          <button class="about-detail-back" type="button" data-about-back>← Powrót</button>
+        </div>
+
+        <div class="about-story">
+          <div class="about-story-copy">
+            <p>Powstanie firmy CLIMBING SYSTEM - techniki linowe jest efektem połączenia pasji życiowej z pracą zawodową.</p>
+
+            <p>Dzięki wieloletniemu doświadczeniu grupy alpinistów tworzących firmę możemy zaoferować swym klientom szeroką gamę usług alpinistycznych, wykonywanych na najwyższym poziomie.</p>
+
+            <p>Podejmujemy się wykonania nawet najtrudniejszych zleceń z uwagi na to, iż do każdego z nich przygotowujemy się w sposób indywidualny, dobierając odpowiednią metodę, najodpowiedniejszy materiał oraz techniki wykonania.</p>
+
+            <p>Szczególną wagę przykładamy do staranności wykonania zlecenia przy zachowaniu najwyższych standardów bezpieczeństwa.</p>
+
+            <p>Prace, które wykonujemy objęte są ubezpieczeniem OC, ponadto dbając o interesy klientów udzielamy gwarancji na wykonane usługi.</p>
+
+            <p>Na życzenie klienta wykonujemy komputerowe wizualizacje wybranych przedsięwzięć oraz ekspertyzy techniczne.</p>
+          </div>
+
+          <div class="about-story-highlight">
+            Naszym atutem jest fakt, iż nawiązana z nami współpraca niejednokrotnie przerodziła się w długofalową kooperację, co świadczy o profesjonalizmie i jakości świadczonych przez nas usług.
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -2548,6 +2794,195 @@
       <div class="global-lightbox-caption" id="globalLightboxCaption"></div>
     </div>
   </div>
+
+
+  <script>
+    (() => {
+      const aboutDetail = document.getElementById('detail-about');
+      if (!aboutDetail) return;
+
+      const openAbout = (event) => {
+        if (event) event.preventDefault();
+        document.body.classList.remove('detail-open','generic-detail-open','silo-detail-open');
+        document.querySelectorAll('.detail-view.active,.generic-detail.active,.silo-detail.active')
+          .forEach(el => el.classList.remove('active'));
+
+        aboutDetail.classList.add('active');
+        document.body.classList.add('about-detail-open');
+        history.pushState({page:'about'}, '', '#o-firmie');
+        window.scrollTo({top:0, behavior:'smooth'});
+      };
+
+      const closeAbout = () => {
+        aboutDetail.classList.remove('active');
+        document.body.classList.remove('about-detail-open');
+        history.pushState({}, '', '#start');
+        window.scrollTo({top:0, behavior:'smooth'});
+      };
+
+      document.querySelectorAll('a').forEach(link => {
+        const label = (link.textContent || '').trim().toLowerCase();
+        const href = (link.getAttribute('href') || '').toLowerCase();
+        if (label === 'o firmie' || href === '#about' || href === '#o-firmie') {
+          link.addEventListener('click', openAbout);
+        }
+      });
+
+      document.querySelectorAll('[data-about-back]').forEach(btn => {
+        btn.addEventListener('click', closeAbout);
+      });
+
+      const syncFromHash = () => {
+        if (location.hash === '#o-firmie') openAbout();
+      };
+
+      window.addEventListener('popstate', () => {
+        if (location.hash === '#o-firmie') {
+          aboutDetail.classList.add('active');
+          document.body.classList.add('about-detail-open');
+        } else {
+          aboutDetail.classList.remove('active');
+          document.body.classList.remove('about-detail-open');
+        }
+      });
+
+      syncFromHash();
+    })();
+  </script>
+
+
+  <script>
+    (() => {
+      const trainingDetail = document.getElementById('detail-training');
+      if (!trainingDetail) return;
+
+      function closeOtherDetails() {
+        document.body.classList.remove(
+          'detail-open','generic-detail-open','silo-detail-open','about-detail-open'
+        );
+        document.querySelectorAll(
+          '.detail-view.active,.generic-detail.active,.silo-detail.active,.about-detail.active'
+        ).forEach(el => el.classList.remove('active'));
+      }
+
+      function openTraining(event, push = true) {
+        if (event) event.preventDefault();
+        closeOtherDetails();
+        trainingDetail.classList.add('active');
+        document.body.classList.add('training-detail-open');
+
+        if (push && location.hash !== '#szkolenia') {
+          history.pushState({page:'training'}, '', '#szkolenia');
+        }
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+
+      function closeTraining() {
+        trainingDetail.classList.remove('active');
+        document.body.classList.remove('training-detail-open');
+        history.pushState({}, '', '#start');
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+
+      document.querySelectorAll('a').forEach(link => {
+        const label = (link.textContent || '').trim().toLowerCase();
+        const href = (link.getAttribute('href') || '').trim().toLowerCase();
+
+        if (
+          label === 'szkolenia' ||
+          href === '#training' ||
+          href === '#szkolenia'
+        ) {
+          link.addEventListener('click', (e) => openTraining(e, true));
+        }
+      });
+
+      document.querySelectorAll('[data-training-back]').forEach(btn => {
+        btn.addEventListener('click', closeTraining);
+      });
+
+      window.addEventListener('popstate', () => {
+        if (location.hash === '#szkolenia') {
+          openTraining(null, false);
+        } else {
+          trainingDetail.classList.remove('active');
+          document.body.classList.remove('training-detail-open');
+        }
+      });
+
+      if (location.hash === '#szkolenia') {
+        openTraining(null, false);
+      }
+    })();
+  </script>
+
+
+  <script>
+    (() => {
+      const rescueDetail = document.getElementById('detail-rescue');
+      if (!rescueDetail) return;
+
+      function closeOtherDetails() {
+        document.body.classList.remove(
+          'detail-open','generic-detail-open','silo-detail-open',
+          'about-detail-open','training-detail-open'
+        );
+        document.querySelectorAll(
+          '.detail-view.active,.generic-detail.active,.silo-detail.active,.about-detail.active,.training-detail.active'
+        ).forEach(el => el.classList.remove('active'));
+      }
+
+      function openRescue(event, push = true) {
+        if (event) event.preventDefault();
+        closeOtherDetails();
+        rescueDetail.classList.add('active');
+        document.body.classList.add('rescue-detail-open');
+
+        if (push && location.hash !== '#ratownictwo') {
+          history.pushState({page:'rescue'}, '', '#ratownictwo');
+        }
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+
+      function closeRescue() {
+        rescueDetail.classList.remove('active');
+        document.body.classList.remove('rescue-detail-open');
+        history.pushState({}, '', '#start');
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+
+      document.querySelectorAll('a').forEach(link => {
+        const label = (link.textContent || '').trim().toLowerCase();
+        const href = (link.getAttribute('href') || '').trim().toLowerCase();
+
+        if (
+          label === 'ratownictwo' ||
+          label === 'ratownictwo i bhp' ||
+          href === '#rescue' ||
+          href === '#ratownictwo'
+        ) {
+          link.addEventListener('click', (e) => openRescue(e, true));
+        }
+      });
+
+      document.querySelectorAll('[data-rescue-back]').forEach(btn => {
+        btn.addEventListener('click', closeRescue);
+      });
+
+      window.addEventListener('popstate', () => {
+        if (location.hash === '#ratownictwo') {
+          openRescue(null, false);
+        } else {
+          rescueDetail.classList.remove('active');
+          document.body.classList.remove('rescue-detail-open');
+        }
+      });
+
+      if (location.hash === '#ratownictwo') {
+        openRescue(null, false);
+      }
+    })();
+  </script>
 
 </body>
 </html>

@@ -133,7 +133,7 @@
       background:linear-gradient(transparent,var(--red),transparent);
       transform:rotate(24deg);opacity:.5;
     }
-    .hero-layout{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(330px,.55fr);gap:70px;align-items:center}
+    .hero-layout{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(420px,.68fr);gap:56px;align-items:center}
     .hero h1{
       margin:18px 0 25px;font-size:clamp(3.7rem,7.4vw,7.3rem);
       line-height:.9;letter-spacing:-.07em;max-width:930px;
@@ -142,7 +142,8 @@
     .hero-lead{max-width:780px;margin:0;color:#c5ccd4;font-size:clamp(1.05rem,1.6vw,1.3rem)}
     .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
     .hero-card{
-      position:relative;padding:30px;border-radius:28px;overflow:hidden;
+      position:relative;padding:34px 36px;border-radius:28px;overflow:hidden;
+      width:100%;max-width:520px;justify-self:end;
       background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
       border:1px solid rgba(255,255,255,.14);box-shadow:var(--shadow);backdrop-filter:blur(16px);
     }
@@ -151,7 +152,12 @@
       background:var(--red);filter:blur(95px);opacity:.18;
     }
     .emergency-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:#ffb8ba}
-    .emergency-number{display:block;margin:13px 0 10px;font-size:clamp(1.8rem,3.5vw,2.7rem);line-height:1;font-weight:950;letter-spacing:-.05em}
+    .emergency-number{
+      display:block;margin:13px 0 10px;
+      font-size:clamp(1.8rem,3.2vw,2.55rem);
+      line-height:1;font-weight:950;letter-spacing:-.05em;
+      white-space:nowrap;
+    }
     .hero-list{display:grid;margin-top:18px;border-top:1px solid var(--line)}
     .hero-list div{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);font-weight:700}
     .hero-list b{color:var(--red)}
@@ -946,6 +952,16 @@
       .floating-call{right:12px;bottom:12px;padding:12px 14px}
       .floating-call span:last-child{display:none}
     }
+  
+    @media(max-width:1020px){
+      .hero-layout{grid-template-columns:1fr;gap:42px}
+      .hero-card{max-width:620px;justify-self:stretch}
+    }
+    @media(max-width:560px){
+      .hero-card{padding:26px 24px}
+      .emergency-number{font-size:clamp(1.7rem,8.5vw,2.35rem)}
+    }
+
   </style>
 </head>
 

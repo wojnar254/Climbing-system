@@ -216,15 +216,15 @@
     .hero-grid{
       width:100%;
       display:grid;
-      grid-template-columns:1.18fr .82fr;
-      gap:55px;
+      grid-template-columns:1.08fr .92fr;
+      gap:26px;
       align-items:center;
       padding:70px 0;
     }
     .hero h1{
       font-size:clamp(3.3rem,7vw,6.9rem);
       letter-spacing:-.065em;
-      max-width:880px;
+      max-width:760px;
       text-transform:uppercase;
     }
     .hero h1 span{color:var(--red)}
@@ -271,7 +271,7 @@
       padding:26px;
       box-shadow:var(--shadow);
       backdrop-filter:blur(8px);
-      transform:rotate(1.5deg);
+      transform:rotate(1.5deg) translateX(-10px);
     }
     .hero-card .big{
       font-size:clamp(4.8rem,8vw,7.8rem);
@@ -964,7 +964,7 @@
       .menu.open{transform:translateY(0)}
       .hamb{display:block}
       .hero-grid,.split,.rescue-grid,.contact-grid{grid-template-columns:1fr}
-      .hero-card{max-width:620px}
+      .hero-card{max-width:620px;margin-left:auto;margin-right:auto}
       .cards{grid-template-columns:repeat(2,1fr)}
       .priority-grid{grid-template-columns:repeat(2,1fr)}
       .timeline{grid-template-columns:repeat(2,1fr)}

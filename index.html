@@ -2454,27 +2454,27 @@ Pozdrawiam`;
       trigger.style.cssText = `left:${100*x/width}%;top:${100*y/height}%;width:${100*w/width}%;height:${100*h/height}%;`;
       trigger.setAttribute('aria-haspopup', 'dialog');
       wrap.appendChild(trigger);
-      return {image, trigger, crop:{x,y,w,h,width,height}};
+      return {image, trigger, fullPhoto:fullPhotos[`${rescue ? "ratownictwo" : "szkolenia"}-${positions.findIndex(p => p[0] === col && p[1] === row)+1}`], crop:{x,y,w,h,width,height}};
     });
     groups.push(group);
   });
 
-  const leasing = Array.from(document.querySelectorAll('.leasing-top-media img')).map(image => {
+  const leasing = Array.from(document.querySelectorAll('.leasing-top-media img')).map((image,index) => {
     image.classList.add('photo-zoom');
     image.tabIndex = 0;
     image.setAttribute('role','button');
     image.setAttribute('aria-haspopup','dialog');
-    return {image, trigger:image};
+    return {image, trigger:image, fullPhoto:fullPhotos[`leasing-${[1,2,4,5][index]}`]};
   });
   if (leasing.length) groups.push(leasing);
 
   function layout() {
     const item = activeGroup[activeIndex];
-    const crop = item.crop;
-    const sourceWidth = crop ? crop.w : item.image.naturalWidth;
-    const sourceHeight = crop ? crop.h : item.image.naturalHeight;
+    const crop = item.fullPhoto ? null : item.crop;
+    const sourceWidth = item.fullPhoto?.width || (crop ? crop.w : item.image.naturalWidth);
+    const sourceHeight = item.fullPhoto?.height || (crop ? crop.h : item.image.naturalHeight);
     const scale = Math.min((window.innerWidth - (window.innerWidth < 600 ? 96 : 160))/sourceWidth,
-      (window.innerHeight - 170)/sourceHeight, 720/sourceWidth);
+      (window.innerHeight - 170)/sourceHeight, 1200/sourceWidth, 1);
     const width = Math.max(1, sourceWidth*scale), height = Math.max(1, sourceHeight*scale);
     const x = (window.innerWidth-width)/2, y = (window.innerHeight-height)/2 - 12;
     Object.assign(stage.style, {left:`${x}px`,top:`${y}px`,width:`${width}px`,height:`${height}px`});
@@ -2488,7 +2488,7 @@ Pozdrawiam`;
   }
   function render() {
     const item = activeGroup[activeIndex];
-    preview.src = item.image.currentSrc || item.image.src;
+    preview.src = item.fullPhoto?.src || item.image.currentSrc || item.image.src;
     labels();
     return layout();
   }
